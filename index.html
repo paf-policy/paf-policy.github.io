@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#285dba">
+ <meta name="description" content="Phase-Conditioned Affordance Fields for SE(3)-Equivariant Visuomotor Policies. Overview, method, simulation affordances, and real-robot demonstrations under normal and varied lighting.">
+ <meta property="og:title" content="Phase-Conditioned Affordance Fields for SE(3)-Equivariant Visuomotor Policies">
+ <meta property="og:description" content="Phase-Conditioned Affordance Fields for SE(3)-Equivariant Visuomotor Policies.">
+ <meta property="og:type" content="website">
+ <title>Phase-Conditioned Affordance Fields for SE(3)-Equivariant Visuomotor Policies</title>
+ <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+ <link rel="stylesheet" href="./styles.css">
+ <script src="./main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+ <nav class="container nav-wrap" aria-label="Main navigation">
+  <div class="nav-links" id="navigation"><a href="#summary-video">Summary Video</a><a href="#method">Method</a><a href="#simulation">Simulation Results</a><a href="#real-world">Real World Results</a></div>
+ </nav>
+</header>
+<main id="main">
+ <section class="hero" id="top" aria-labelledby="paper-title">
+  <div class="container">
+   <h1 id="paper-title">Phase-Conditioned Affordance Fields<br class="title-break"> for SE(3)-Equivariant Visuomotor Policies</h1>
+   <p class="authors"><span>Xinzhe Chen</span>, <span>Liqi Huang</span>, <span>Sihua Ren</span>, <span>Haowen Sun</span>, <span>Mingyang Li</span>, <span>Zeyang Liu</span>, <span>Xingyu Chen</span>, <span>Xuguang Lan</span></p>
+   <p class="affiliation">National Key Laboratory of Human-Machine Hybrid Augmented Intelligence<br>Institute of Artificial Intelligence and Robotics, Xi'an Jiaotong University</p>
+   <div class="publication-links"><a class="button primary" href="./assets/paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z"/><path d="M14 2v7h7M7 13h10M7 17h7"/></svg> Paper</a><a class="button primary" href="#summary-video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg> Video</a><span class="button unavailable" aria-disabled="true"><svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.558 21.923c.563.104.768-.244.768-.542 0-.267-.01-.975-.015-1.913-3.13.68-3.79-1.51-3.79-1.51-.512-1.3-1.25-1.647-1.25-1.647-1.022-.7.078-.686.078-.686 1.13.08 1.725 1.16 1.725 1.16 1.005 1.723 2.637 1.225 3.279.937.102-.728.393-1.225.715-1.507-2.498-.284-5.124-1.25-5.124-5.566 0-1.23.44-2.234 1.16-3.022-.116-.284-.503-1.43.11-2.98 0 0 .945-.303 3.094 1.155A10.8 10.8 0 0 1 12 6.17c.956.005 1.919.129 2.818.379 2.148-1.458 3.091-1.155 3.091-1.155.615 1.55.228 2.696.112 2.98.722.788 1.158 1.792 1.158 3.022 0 4.327-2.63 5.279-5.136 5.558.404.348.765 1.034.765 2.084 0 1.505-.014 2.72-.014 3.09 0 .301.203.651.774.541A11.252 11.252 0 0 0 12 .75Z"/></svg> Code (coming soon)</span></div>
+  </div>
+ </section>
+ <section class="section overview-section" id="overview" aria-label="Overview">
+  <div class="container">
+   <header class="section-heading"><h2>Overview</h2></header>
+   <figure class="paper-figure">
+  <a class="figure-button" href="./assets/images/figure_overview.webp" aria-label="Enlarge figure: Global SE(3) equivariance compared with phase-conditioned affordance fields on the hang-cup task."><img src="./assets/images/figure_overview.webp" alt="Global SE(3) equivariance compared with phase-conditioned affordance fields on the hang-cup task." width="1600" height="354" fetchpriority="high"><span class="zoom-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Enlarge</span></a>
+ </figure>
+   <p class="overview-copy">SE(3)-equivariance provides a useful geometric inductive bias for visuomotor policies, encoding that actions covary with rigid transformations of the observation. However, existing SE(3)-equivariant visuomotor policies build this bias on a global equivariance assumption that treats the entire observation as governed by a single rigid transformation, which breaks down in real-world manipulation tasks where the task-relevant region changes across different objects. We address this by learning a <strong>phase-conditioned affordance field (PAF)</strong> over the observed point cloud, a per-point score that the SE(3)-equivariant policy uses in two complementary ways. Its score-weighted centroid serves as a learned, phase-conditioned anchor that canonicalizes the observation and the action around the active region, replacing the fixed gripper-frame reference, and the score itself is appended as a per-point feature. This introduces a local geometric inductive bias, while preserving the policy’s global SE(3) equivariance. We validate on multiple MimicGen tasks under varying spatial randomization, and PAF consistently improves the success rate of the underlying policy. On multi-object real-robot tasks, PAF outperforms baselines and remains more robust under lighting variations.</p>
+  </div>
+ </section>
+ <section class="section soft" id="summary-video" aria-label="Summary Video">
+  <div class="container">
+   <header class="section-heading"><h2>Summary Video</h2></header>
+   <div class="video-frame"><video class="summary-video" controls playsinline preload="metadata" poster="./media/summary_poster.jpg" width="1920" height="1080" aria-label="PAF summary video" src="./media/video_PAF_h264.mp4"><a href="./media/video_PAF_h264.mp4">Download the summary video</a></video></div>
+  </div>
+ </section>
+ <section class="section" id="method" aria-label="Method">
+  <div class="container">
+   <header class="section-heading"><h2>Method</h2></header>
+   <figure class="paper-figure">
+  <a class="figure-button" href="./assets/images/figure_method.webp" aria-label="Enlarge figure: PAF architecture: phase context, affordance prediction, and an equivariant diffusion policy."><img src="./assets/images/figure_method.webp" alt="PAF architecture: phase context, affordance prediction, and an equivariant diffusion policy." width="1600" height="732" loading="lazy"><span class="zoom-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Enlarge</span></a>
+ </figure>
+   <div class="method-steps">
+    <article class="method-step">
+     <h3>Phase Context Encoding</h3>
+     <ul><li>Phase Context Encoder maps six SE(3)-invariant statistics from the robot state history to a phase context</li></ul>
+    </article>
+    <article class="method-step">
+     <h3>Phase-conditioned affordance field</h3>
+     <ul>
+      <li>Affordance Predictor predicts the per-point affordance score over the point cloud</li>
+      <li>Phase-to-slot router combines the affordance score with the active slot based on the phase context</li>
+     </ul>
+    </article>
+    <article class="method-step">
+     <h3>Affordance-enhanced action generation</h3>
+     <ul>
+      <li>Score-weighted anchor recenters observation &amp; action on the active region</li>
+      <li>The score is appended as an additional feature to augment the point cloud that feeds the SO(3)-equivariant diffusion</li>
+     </ul>
+    </article>
+   </div>
+  </div>
+ </section>
+ <section class="section soft" id="simulation" aria-label="Simulation Results">
+  <div class="container">
+   <header class="section-heading"><h2>Simulation Results</h2></header>
+   <figure class="paper-figure">
+  <a class="figure-button" href="./assets/images/figure_simulation_setting.webp" aria-label="Enlarge figure: MimicGen simulation settings for Square, Coffee, Threading, and Three-Piece Assembly."><img src="./assets/images/figure_simulation_setting.webp" alt="MimicGen simulation settings for Square, Coffee, Threading, and Three-Piece Assembly." width="1600" height="189" loading="lazy"><span class="zoom-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Enlarge</span></a>
+  <figcaption>MimicGen simulation settings for Square, Coffee, Threading, and Three-Piece Assembly under different spatial randomization levels.</figcaption>
+ </figure>
+   <div class="gallery-heading"><div><h3>Affordance Fields in Simulation</h3></div></div>
+   <div class="video-grid simulation" id="simulation-clips">
+<figure class="video-card"><video src="./assets/affordance/sim/coffee.mp4" poster="./assets/affordance/sim/coffee_poster.jpg" width="800" height="854" controls muted loop playsinline preload="none" aria-label="Coffee — affordance动图/sim" data-autoplay><a href="./assets/affordance/sim/coffee.mp4">Watch Coffee</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/sim/sqaure.mp4" poster="./assets/affordance/sim/sqaure_poster.jpg" width="800" height="854" controls muted loop playsinline preload="none" aria-label="Square — affordance动图/sim" data-autoplay><a href="./assets/affordance/sim/sqaure.mp4">Watch Square</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/sim/threading.mp4" poster="./assets/affordance/sim/threading_poster.jpg" width="800" height="854" controls muted loop playsinline preload="none" aria-label="Threading — affordance动图/sim" data-autoplay><a href="./assets/affordance/sim/threading.mp4">Watch Threading</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/sim/three_piece_assembly.mp4" poster="./assets/affordance/sim/three_piece_assembly_poster.jpg" width="800" height="854" controls muted loop playsinline preload="none" aria-label="Three-Piece Assembly — affordance动图/sim" data-autoplay><a href="./assets/affordance/sim/three_piece_assembly.mp4">Watch Three-Piece Assembly</a></video></figure>
+</div>
+  </div>
+ </section>
+ <section class="section" id="real-world" aria-label="Real World Results">
+  <div class="container">
+   <header class="section-heading"><h2>Real World Results</h2></header>
+   <figure class="paper-figure">
+  <a class="figure-button" href="./assets/images/figure_realworld_setting.webp" aria-label="Enlarge figure: Franka Research 3 setup with an RGB-D camera, six real-world tasks, and colored lighting."><img src="./assets/images/figure_realworld_setting.webp" alt="Franka Research 3 setup with an RGB-D camera, six real-world tasks, and colored lighting." width="1600" height="413" loading="lazy"><span class="zoom-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Enlarge</span></a>
+  <figcaption>Real-robot setup and tasks. From left to right, a Franka Research 3 arm with a RGB-D camera, keyframes of the six tasks, and the lighting variation used to probe robustness.</figcaption>
+ </figure>
+   <div class="gallery-heading"><div><h3>Real-World Affordance Fields</h3></div></div>
+   <div class="video-grid real-affordance-grid" id="real-affordance-clips">
+<figure class="video-card"><video src="./assets/affordance/real/hang_cup.mp4" poster="./assets/affordance/real/hang_cup_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Hang Cup — affordance动图/real" data-autoplay><a href="./assets/affordance/real/hang_cup.mp4">Watch Hang Cup</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/real/cup_drawer.mp4" poster="./assets/affordance/real/cup_drawer_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Cup Storage — affordance动图/real" data-autoplay><a href="./assets/affordance/real/cup_drawer.mp4">Watch Cup Storage</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/real/flower.mp4" poster="./assets/affordance/real/flower_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Flower Arranging — affordance动图/real" data-autoplay><a href="./assets/affordance/real/flower.mp4">Watch Flower Arranging</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/real/cake_box.mp4" poster="./assets/affordance/real/cake_box_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Cake Packaging — affordance动图/real" data-autoplay><a href="./assets/affordance/real/cake_box.mp4">Watch Cake Packaging</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/real/cook.mp4" poster="./assets/affordance/real/cook_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Cook — affordance动图/real" data-autoplay><a href="./assets/affordance/real/cook.mp4">Watch Cook</a></video></figure>
+<figure class="video-card"><video src="./assets/affordance/real/drag_cube.mp4" poster="./assets/affordance/real/drag_cube_poster.jpg" width="1280" height="692" controls muted loop playsinline preload="none" aria-label="Drag Cube — affordance动图/real" data-autoplay><a href="./assets/affordance/real/drag_cube.mp4">Watch Drag Cube</a></video></figure>
+</div>
+  </div>
+ </section>
+ <section class="section soft" id="demos" aria-label="Real-Robot Demos">
+  <div class="container">
+   <header class="section-heading"><h2>Real-Robot Demos</h2></header>
+   <div class="condition">
+    <div class="gallery-heading"><div><h3 class="condition-title"><span class="condition-dot" aria-hidden="true"></span>Normal Lighting</h3><p>Robot execution under the training lighting condition.</p></div></div>
+    <div class="video-grid demo-grid" id="normal-lighting-clips">
+<figure class="video-card"><video src="./assets/demos/hang_cup_N.mp4" poster="./assets/demos/hang_cup_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Hang Cup — 真机demo"><a href="./assets/demos/hang_cup_N.mp4">Watch Hang Cup</a></video><figcaption><span>Hang Cup</span><span class="card-index">01</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cup_drawer_N.mp4" poster="./assets/demos/cup_drawer_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cup Storage — 真机demo"><a href="./assets/demos/cup_drawer_N.mp4">Watch Cup Storage</a></video><figcaption><span>Cup Storage</span><span class="card-index">02</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/flower_N.mp4" poster="./assets/demos/flower_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Flower Arranging — 真机demo"><a href="./assets/demos/flower_N.mp4">Watch Flower Arranging</a></video><figcaption><span>Flower Arranging</span><span class="card-index">03</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cake_box_N.mp4" poster="./assets/demos/cake_box_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cake Packaging — 真机demo"><a href="./assets/demos/cake_box_N.mp4">Watch Cake Packaging</a></video><figcaption><span>Cake Packaging</span><span class="card-index">04</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cook_N.mp4" poster="./assets/demos/cook_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cook — 真机demo"><a href="./assets/demos/cook_N.mp4">Watch Cook</a></video><figcaption><span>Cook</span><span class="card-index">05</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/drag_cube_N.mp4" poster="./assets/demos/drag_cube_N_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Drag Cube — 真机demo"><a href="./assets/demos/drag_cube_N.mp4">Watch Drag Cube</a></video><figcaption><span>Drag Cube</span><span class="card-index">06</span></figcaption></figure>
+</div>
+   </div>
+   <div class="condition">
+    <div class="gallery-heading"><div><h3 class="condition-title"><span class="condition-dot varied" aria-hidden="true"></span>Lighting Variation</h3><p>Robot execution under out-of-distribution colored illumination.</p></div></div>
+    <div class="video-grid demo-grid" id="lighting-variation-clips">
+<figure class="video-card"><video src="./assets/demos/hang_cup_L.mp4" poster="./assets/demos/hang_cup_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Hang Cup — 真机demo"><a href="./assets/demos/hang_cup_L.mp4">Watch Hang Cup</a></video><figcaption><span>Hang Cup</span><span class="card-index">01</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cup_drawer_L.mp4" poster="./assets/demos/cup_drawer_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cup Storage — 真机demo"><a href="./assets/demos/cup_drawer_L.mp4">Watch Cup Storage</a></video><figcaption><span>Cup Storage</span><span class="card-index">02</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/flower_L.mp4" poster="./assets/demos/flower_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Flower Arranging — 真机demo"><a href="./assets/demos/flower_L.mp4">Watch Flower Arranging</a></video><figcaption><span>Flower Arranging</span><span class="card-index">03</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cake_box_L.mp4" poster="./assets/demos/cake_box_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cake Packaging — 真机demo"><a href="./assets/demos/cake_box_L.mp4">Watch Cake Packaging</a></video><figcaption><span>Cake Packaging</span><span class="card-index">04</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/cook_L.mp4" poster="./assets/demos/cook_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Cook — 真机demo"><a href="./assets/demos/cook_L.mp4">Watch Cook</a></video><figcaption><span>Cook</span><span class="card-index">05</span></figcaption></figure>
+<figure class="video-card"><video src="./assets/demos/drag_cube_L.mp4" poster="./assets/demos/drag_cube_L_poster.jpg" width="960" height="720" controls muted loop playsinline preload="none" aria-label="Drag Cube — 真机demo"><a href="./assets/demos/drag_cube_L.mp4">Watch Drag Cube</a></video><figcaption><span>Drag Cube</span><span class="card-index">06</span></figcaption></figure>
+</div>
+   </div>
+  </div>
+ </section>
+ <section class="section" id="bibtex" aria-labelledby="bibtex-title">
+  <div class="container">
+   <header class="section-heading"><h2 id="bibtex-title">BibTeX</h2></header>
+   <pre class="bibtex-block" aria-label="BibTeX citation"><code></code></pre>
+  </div>
+ </section>
+</main>
+<dialog class="lightbox" aria-label="Enlarged paper figure"><button class="close-lightbox" type="button" aria-label="Close enlarged figure">Close ×</button><img alt=""><p></p></dialog>
+</body>
+</html>
